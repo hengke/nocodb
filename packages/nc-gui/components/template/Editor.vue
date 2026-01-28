@@ -614,7 +614,7 @@ async function importTemplate() {
                   return res
                 }, {}),
               )
-              const res = await $api.dbTableRow.bulkCreate(
+              const res = await $api.dbTableRow.bulkUpsert(
                 'noco',
                 baseId,
                 tableId,
@@ -753,7 +753,7 @@ async function importTemplate() {
                 for (let i = 0; i < data.length; i += offset) {
                   updateImportTips(baseName, tableMeta.title, progress, total)
                   const batchData = remapColNames(data.slice(i, i + offset), tableMeta.columns)
-                  await $api.dbTableRow.bulkCreate('noco', base.value.id, tableMeta.id, batchData)
+                  await $api.dbTableRow.bulkUpsert('noco', base.value.id, tableMeta.id, batchData)
                   progress += batchData.length
                 }
                 updateImportTips(baseName, tableMeta.title, total, total)
