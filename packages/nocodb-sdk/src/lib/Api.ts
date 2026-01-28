@@ -11331,6 +11331,9 @@ export class Api<
       orgs: string,
       baseName: string,
       tableName: string,
+      query?: {
+        undo?: string;
+      },
       data: object[],
       params: RequestParams = {}
     ) =>
